@@ -26,9 +26,12 @@
                   <div class="col-md-6 col-lg-6 col-xl-6">
                     <!-- Product name -->
                     <ul class="product-list">
+                      <transition-group name="fade" tag="li">
                       <li v-for="product in products" :key="product.id">
-                        <span style="font-size: 25px;">{{ product.name }}</span>      
+                        <span style="font-size: 25px;">{{ product.name }}</span>   
+                        <button @click="deleteProduct(product.id)" class="btn btn-danger btn-sm ms-2">Delete</button>         
                       </li>
+                    </transition-group>
                     </ul>
                     <hr>
                     <div class="mt-3 mb-0 text-muted small">
@@ -80,6 +83,7 @@
     </section>
   </template>
   
+ 
   <script>
   export default {
     computed: {
@@ -90,10 +94,24 @@
     methods: {
       goToAddProductForm() {
         this.$router.push('/add-product');
+      },
+      deleteProduct(productId) {
+      if (confirm('Are you sure you want to delete this product?')) {
+        // Use Vue's nextTick to ensure the product is removed after the confirm dialog
+        this.$nextTick(() => {
+          this.$store.commit('deleteProduct', productId);
+          this.saveToLocalStorage();
+        });
+      }
+    },
+      saveToLocalStorage() {
+        localStorage.setItem('products', JSON.stringify(this.products));
       }
     },
   }
   </script>
+  
+
   
   
   <style scoped>
@@ -120,6 +138,12 @@
   .product-list li {
     margin-bottom: 5px; 
     font-size: 16px; 
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+    opacity: 0;
   }
   </style>
   
