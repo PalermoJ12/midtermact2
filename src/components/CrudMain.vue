@@ -1,10 +1,11 @@
 <template>
     <section>
       <div class="container py-5 position-relative">
-        <h2 class="text-center mb-4">📝 Product List</h2> 
         <div class="row justify-content-center mb-3">
           <div class="col-md-12 col-xl-10 d-flex justify-content-end"> 
-            <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add a Product.">➕</button>
+            <button type="button" class="btn btn-primary btn-add" @click="goToAddProductForm" data-bs-toggle="tooltip" data-bs-placement="top" title="Add a Product.">
+              ➕
+            </button>
           </div>
         </div>
         <div class="row justify-content-center mb-3">
@@ -26,7 +27,7 @@
                     <!-- Product name -->
                     <ul class="product-list">
                       <li v-for="product in products" :key="product.id">
-                        <span style="font-size: 25px;">{{ product.name }}</span>     
+                        <span style="font-size: 25px;">{{ product.name }}</span>      
                       </li>
                     </ul>
                     <hr>
@@ -85,7 +86,12 @@
       products() {
         return this.$store.state.products; 
       }
-    }
+    },
+    methods: {
+      goToAddProductForm() {
+        this.$router.push('/add-product');
+      }
+    },
   }
   </script>
   
