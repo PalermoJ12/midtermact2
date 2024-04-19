@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div class="vh-100 bg-dark text-white">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand text-light" href="#">
           <span>📦</span>
           CRUD App
-        </a>       
+        </a>
       </div>
     </nav>
-    <div class="container">     
+    <div class="container">
       <router-view></router-view>
     </div>
   </div>
@@ -17,10 +17,8 @@
 
 <script>
 export default {
-  name: 'App',
-}
+  name: "App",
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
