@@ -9,7 +9,7 @@ export default createStore({
     mutations: {
         addProduct(state, product) {
             product.id = state.products.length + 1;
-            state.products.push({...product, quantity: 1});  // Assuming default quantity as 1
+            state.products.push({...product, quantity: 1});  
         }
     }
 });

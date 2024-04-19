@@ -1,4 +1,3 @@
-// router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
 import CrudMainView from '../views/CrudMainView.vue';
 import ProductView from '../views/ProductView.vue';
