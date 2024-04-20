@@ -29,6 +29,7 @@ export default createStore({
       );
       if (index !== -1) {
         state.products.splice(index, 1, updatedProduct);
+        state.selectedProduct = null; 
       }
     },
 

@@ -1,5 +1,5 @@
 <template>
-      <h1 class="mt-5">Edit Product</h1>
+    <h1 class="mt-5">Edit Product</h1>
     <div v-if="selectedProduct" class="container my-5 vh-100">
         <form @submit.prevent="updateProduct">
             <div class="mb-3">
@@ -35,6 +35,11 @@ export default {
 
     methods: {
         updateProduct() {
+
+            if (this.selectedProduct.name === "" || this.selectedProduct.description === "" || this.selectedProduct.price === null) {
+                return;
+            }
+
             this.$store.commit("updateProduct", this.selectedProduct);
             this.$router.push("/");
         },
